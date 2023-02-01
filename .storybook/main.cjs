@@ -3,6 +3,7 @@ module.exports = {
     "../react-src/**/*.stories.mdx",
     "../react-src/**/*.stories.@(js|jsx|ts|tsx)",
   ],
+  staticDirs: ["./static"],
   addons: [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
@@ -17,15 +18,15 @@ module.exports = {
       ? { ...config.experiments, asyncWebAssembly: true }
       : { asyncWebAssembly: true };
 
-    config.plugins.push(
-      new WasmPackPlugin({
-        crateDirectory: path.resolve(__dirname, "../util/"),
-        outDir: path.resolve(__dirname, "../react-src/util/"),
-        forceWatch: true,
-        forceMode: "production",
-        outName: "index",
-      })
-    );
+    // config.plugins.push(
+    //   new WasmPackPlugin({
+    //     crateDirectory: path.resolve(__dirname, "../util/"),
+    //     outDir: path.resolve(__dirname, "../react-src/util/"),
+    //     forceWatch: true,
+    //     forceMode: "production",
+    //     outName: "index",
+    //   })
+    // );
 
     config.module.rules.push({
       resolve: { fullySpecified: false },

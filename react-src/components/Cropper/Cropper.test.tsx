@@ -5,6 +5,6 @@ import Cropper from "./Cropper";
 
 describe("Cropper", () => {
   test("renders the Button component", () => {
-    render(<Cropper label="Hello world!" />);
+    render(<Cropper fileName="Hello world!" />);
   });
 });

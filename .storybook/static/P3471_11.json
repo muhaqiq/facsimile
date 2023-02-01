@@ -1,0 +1,81 @@
+{
+  "TextElements": [
+    {
+      "Position": "Side Title",
+      "Order": 0,
+      "FacsimileRegion": {
+        "Rotation": 60,
+        "Points": [
+          {
+            "X": 266,
+            "Y": 324
+          },
+          {
+            "X": 335,
+            "Y": 444
+          },
+          {
+            "X": 263,
+            "Y": 485
+          },
+          {
+            "X": 194,
+            "Y": 365
+          }
+        ]
+      }
+    },
+    {
+      "Position": "Main Text",
+      "Order": 1,
+      "FacsimileRegion": {
+        "Rotation": 0,
+        "Points": [
+          {
+            "X": 315,
+            "Y": 207
+          },
+          {
+            "X": 926,
+            "Y": 207
+          },
+          {
+            "X": 926,
+            "Y": 1228
+          },
+          {
+            "X": 315,
+            "Y": 1228
+          }
+        ]
+      }
+    },
+    {
+      "Position": "Line",
+      "Order": 3,
+      "FacsimileRegion": {
+        "Rotation": 0,
+        "Points": [
+          {
+            "X": 315,
+            "Y": 547
+          },
+          {
+            "X": 925,
+            "Y": 547
+          },
+          {
+            "X": 925,
+            "Y": 617
+          },
+          {
+            "X": 315,
+            "Y": 617
+          }
+        ]
+      }
+    }
+  ],
+  "ImageElements": [],
+  "Units": []
+}

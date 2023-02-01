@@ -18,7 +18,7 @@
     "watch-wasm": "cargo watch -w util -s \"wasm-pack build util --out-dir ../react-src/util --out-name index\"",
     "test": "jest",
     "sb": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-sb": "build-storybook"
   },
   "devDependencies": {
     "@babel/core": "^7.20.12",

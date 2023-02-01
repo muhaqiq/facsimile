@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import Cropper from "./Cropper";
 
 export default {
-  title: "MuhaqiqTranscriber/Cropper",
+  title: "MuhaqiqFacsimileUtil/Cropper",
   component: Cropper,
 } as ComponentMeta<typeof Cropper>;
 

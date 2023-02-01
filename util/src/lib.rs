@@ -1,14 +1,9 @@
-pub fn add(left: usize, right: usize) -> usize {
-    left + right
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
-    }
-}
+#[cfg(feature = "crp")]
+pub mod cropping;
+#[cfg(feature = "det")]
+pub mod detecting;
+#[cfg(feature = "gen")]
+pub mod generating;
+pub(crate) mod helpers;
+pub(crate) mod rect;
+pub(crate) mod transforms;

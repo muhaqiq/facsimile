@@ -1,6 +1,6 @@
 [package]
 name = "facsimile"
-version = "0.0.1"
+version = "0.0.2"
 edition = "2021"
 description = "Utilities for working with facsimiles of manuscripts in textual scholarship projects (very early alpha)"
 license = "MIT"
@@ -8,3 +8,35 @@ license = "MIT"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+base64 = "0.13.0"
+
+
+[dependencies.image]
+version = "0.24.2"
+default-features = false
+features = [
+    "gif",
+    "jpeg",
+    "ico",
+    "png",
+    "pnm",
+    "tga",
+    "tiff",
+    "webp",
+    "bmp",
+    "hdr",
+    "dxt",
+    "dds",
+    "farbfeld",
+]
+
+[dependencies.imageproc]
+version = "0.23.0"
+default-features = false
+
+
+[features]
+default = ["det", "gen", "crp"]
+det = []
+gen = []
+crp = []

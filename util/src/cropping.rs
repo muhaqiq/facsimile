@@ -3,14 +3,18 @@ use image::imageops::{crop, replace};
 use image::ImageOutputFormat::Png;
 use image::{load_from_memory_with_format, ImageFormat, RgbImage};
 use std::io::Cursor;
+#[cfg(feature = "wasm")]
+use wasm_bindgen::prelude::*;
 
 use crate::rect::Rect;
 use crate::transforms::{add_frame, crop_region, rotate};
 
+#[cfg_attr(feature = "wasm", wasm_bindgen)]
 pub struct FacsimileCropper {
     pub(crate) data: RgbImage,
 }
 
+#[cfg_attr(feature = "wasm", wasm_bindgen)]
 impl FacsimileCropper {
     pub fn new(encoded_file: &str) -> Self {
         let base64_to_vector = decode(encoded_file).unwrap();

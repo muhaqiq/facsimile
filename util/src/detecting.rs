@@ -5,11 +5,15 @@ use image::{load_from_memory_with_format, ImageFormat, RgbImage};
 use crate::helpers::detect_lines;
 use crate::rect::Rect;
 use crate::transforms::{binarize, crop_region, rotate};
+#[cfg(feature = "wasm")]
+use wasm_bindgen::prelude::*;
 
+#[cfg_attr(feature = "wasm", wasm_bindgen)]
 pub struct LineDetector {
     pub(crate) data: RgbImage,
 }
 
+#[cfg_attr(feature = "wasm", wasm_bindgen)]
 impl LineDetector {
     pub fn new(encoded_file: &str) -> Self {
         let base64_to_vector = decode(encoded_file).unwrap();

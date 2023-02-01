@@ -4,6 +4,8 @@ use image::RgbImage;
 use imageproc::drawing::draw_line_segment_mut;
 use std::io::Cursor;
 
+#[cfg(feature = "wasm")]
+use wasm_bindgen::prelude::*;
 trait ConvertToPixels {
     fn to_pixels(self) -> u32;
 }
@@ -58,6 +60,7 @@ impl GenerationPipeline for RgbImage {
     }
 }
 
+#[cfg_attr(feature = "wasm", wasm_bindgen)]
 pub fn generate_facsimile(w: u32, h: u32) -> String {
     RgbImage::create_image(w, h).draw_grid().encode_as_base64()
 }

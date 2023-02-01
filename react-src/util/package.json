@@ -1,0 +1,18 @@
+{
+  "name": "@muhaqiq/facsimile",
+  "version": "0.0.2",
+  "repository": "https://github.com/muhaqiq/facsimile",
+  "author": "Mahmoud Kozae",
+  "license": "MIT",
+  "private": false,
+  "description": "Utilities for working with facsimiles of manuscripts in textual scholarship projects (very early alpha)",
+  "files": [
+    "index_bg.wasm",
+    "index.js",
+    "index_bg.js",
+    "index.d.ts"
+  ],
+  "module": "index.js",
+  "types": "index.d.ts",
+  "sideEffects": false
+}

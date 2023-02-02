@@ -1,11 +1,13 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
-* @param {number} w
-* @param {number} h
+* @param {number | undefined} w
+* @param {number | undefined} h
+* @param {Uint8Array | undefined} bg_color
+* @param {Uint8Array | undefined} grid_color
 * @returns {string}
 */
-export function generate_facsimile(w: number, h: number): string;
+export function generate_facsimile(w?: number, h?: number, bg_color?: Uint8Array, grid_color?: Uint8Array): string;
 /**
 */
 export class FacsimileCropper {

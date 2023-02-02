@@ -1,7 +1,7 @@
 module.exports = {
   stories: [
-    "../react-src/**/*.stories.mdx",
-    "../react-src/**/*.stories.@(js|jsx|ts|tsx)",
+    "../playground-src/**/*.stories.mdx",
+    "../playground-src/**/*.stories.@(js|jsx|ts|tsx)",
   ],
   staticDirs: ["./static"],
   addons: [

@@ -10,7 +10,7 @@ import packageJson from "./package.json" assert { type: "json" };
 
 export default [
   {
-    input: "react-src/index.ts",
+    input: "playground-src/index.ts",
     output: [
       {
         file: packageJson.main,

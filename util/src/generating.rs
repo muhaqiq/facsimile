@@ -16,21 +16,21 @@ impl ConvertToPixels for u32 {
     }
 }
 
-pub trait GenerationPipeline {
-    fn create_image(w: u32, h: u32) -> RgbImage;
-    fn draw_grid(self) -> RgbImage;
+trait GenerationPipeline {
+    fn create_image(w: u32, h: u32, color: [u8; 3]) -> RgbImage;
+    fn draw_grid(self, color: [u8; 3]) -> RgbImage;
     fn encode_as_base64(self) -> String;
 }
 
 impl GenerationPipeline for RgbImage {
-    fn create_image(w: u32, h: u32) -> RgbImage {
+    fn create_image(w: u32, h: u32, color: [u8; 3]) -> RgbImage {
         let mut im: RgbImage = image::ImageBuffer::new(w.to_pixels(), h.to_pixels());
         for pixel in im.pixels_mut() {
-            *pixel = image::Rgb([227, 221, 202]);
+            *pixel = image::Rgb(color);
         }
         im
     }
-    fn draw_grid(mut self) -> RgbImage {
+    fn draw_grid(mut self, color: [u8; 3]) -> RgbImage {
         let h = self.height();
         let w = self.width();
         for point in (0..w).step_by(50) {
@@ -38,7 +38,7 @@ impl GenerationPipeline for RgbImage {
                 &mut self,
                 (point as f32, 0.0),
                 (point as f32, h as f32),
-                image::Rgb([0, 0, 0]),
+                image::Rgb(color),
             )
         }
         for point in (0..h).step_by(50) {
@@ -46,7 +46,7 @@ impl GenerationPipeline for RgbImage {
                 &mut self,
                 (0.0, point as f32),
                 (w as f32, point as f32),
-                image::Rgb([0, 0, 0]),
+                image::Rgb(color),
             )
         }
         self
@@ -60,7 +60,31 @@ impl GenerationPipeline for RgbImage {
     }
 }
 
+const A4_WIDTH: u32 = 210;
+const A4_HEIGHT: u32 = 297;
+const PARCHAMENT_YELLOW: [u8; 3] = [227, 221, 202];
+const BLACK: [u8; 3] = [0, 0, 0];
+
 #[cfg_attr(feature = "wasm", wasm_bindgen)]
-pub fn generate_facsimile(w: u32, h: u32) -> String {
-    RgbImage::create_image(w, h).draw_grid().encode_as_base64()
+pub fn generate_facsimile(
+    w: Option<u32>,
+    h: Option<u32>,
+    bg_color: Option<Box<[u8]>>,
+    grid_color: Option<Box<[u8]>>,
+) -> String {
+    let w = w.unwrap_or(A4_WIDTH);
+    let h = h.unwrap_or(A4_HEIGHT);
+    let bg_color = if let Some(value) = bg_color {
+        [value[0], value[1], value[2]]
+    } else {
+        PARCHAMENT_YELLOW
+    };
+    let grid_color = if let Some(value) = grid_color {
+        [value[0], value[1], value[2]]
+    } else {
+        BLACK
+    };
+    RgbImage::create_image(w, h, bg_color)
+        .draw_grid(grid_color)
+        .encode_as_base64()
 }

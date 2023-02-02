@@ -104,15 +104,32 @@ function getInt32Memory0() {
 function getArrayU32FromWasm0(ptr, len) {
     return getUint32Memory0().subarray(ptr / 4, ptr / 4 + len);
 }
+
+function isLikeNone(x) {
+    return x === undefined || x === null;
+}
+
+function passArray8ToWasm0(arg, malloc) {
+    const ptr = malloc(arg.length * 1);
+    getUint8Memory0().set(arg, ptr / 1);
+    WASM_VECTOR_LEN = arg.length;
+    return ptr;
+}
 /**
-* @param {number} w
-* @param {number} h
+* @param {number | undefined} w
+* @param {number | undefined} h
+* @param {Uint8Array | undefined} bg_color
+* @param {Uint8Array | undefined} grid_color
 * @returns {string}
 */
-export function generate_facsimile(w, h) {
+export function generate_facsimile(w, h, bg_color, grid_color) {
     try {
         const retptr = wasm.__wbindgen_add_to_stack_pointer(-16);
-        wasm.generate_facsimile(retptr, w, h);
+        var ptr0 = isLikeNone(bg_color) ? 0 : passArray8ToWasm0(bg_color, wasm.__wbindgen_malloc);
+        var len0 = WASM_VECTOR_LEN;
+        var ptr1 = isLikeNone(grid_color) ? 0 : passArray8ToWasm0(grid_color, wasm.__wbindgen_malloc);
+        var len1 = WASM_VECTOR_LEN;
+        wasm.generate_facsimile(retptr, !isLikeNone(w), isLikeNone(w) ? 0 : w, !isLikeNone(h), isLikeNone(h) ? 0 : h, ptr0, len0, ptr1, len1);
         var r0 = getInt32Memory0()[retptr / 4 + 0];
         var r1 = getInt32Memory0()[retptr / 4 + 1];
         return getStringFromWasm0(r0, r1);
@@ -122,9 +139,6 @@ export function generate_facsimile(w, h) {
     }
 }
 
-function isLikeNone(x) {
-    return x === undefined || x === null;
-}
 /**
 */
 export class FacsimileCropper {

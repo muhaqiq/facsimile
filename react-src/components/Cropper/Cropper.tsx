@@ -21,14 +21,14 @@ const Cropper = ({ fileName, color, framePercentage }: ICropperProps) => {
     [Uint32Array, number, Uint32Array, string][]
   >([]);
   useEffect(() => {
-    loadFacsimileCropper(`/${fileName}.jpeg`)
+    loadFacsimileCropper(`${fileName}.jpeg`)
       .then((imgCrp) => {
         setWasmImg(imgCrp);
         setImage(imgCrp.get_url());
       })
       .catch((err) => console.log(err));
 
-    fetch(`/${fileName}.json`)
+    fetch(`${fileName}.json`)
       .then((res) => res.json())
       .then(({ TextElements }: { TextElements: any[] }) => {
         setRegions(
